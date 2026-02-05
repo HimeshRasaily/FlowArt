@@ -6,7 +6,7 @@ from datetime import datetime
 import re
 
 from models.user import UserResponse, UserUpdate
-from utils.dependencies import get_current_user
+from utils.dependencies import get_current_user, security
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
