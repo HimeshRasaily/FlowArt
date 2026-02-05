@@ -1,24 +1,45 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Mail, Lock, User as UserIcon, Eye, EyeOff } from 'lucide-react';
+import { X, Mail, Lock, User as UserIcon, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
+import { useAuth } from '../contexts/AuthContext';
 
 const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const [mode, setMode] = useState(initialMode);
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: ''
   });
 
-  const handleSubmit = (e) => {
+  const { login, register } = useAuth();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Will be connected to backend later
-    console.log('Auth submission:', mode, formData);
-    onClose();
+    setLoading(true);
+
+    try {
+      let result;
+      if (mode === 'login') {
+        result = await login(formData.email, formData.password);
+      } else {
+        result = await register(formData.name, formData.email, formData.password);
+      }
+
+      if (result.success) {
+        // Reset form and close modal
+        setFormData({ name: '', email: '', password: '' });
+        onClose();
+      }
+    } catch (error) {
+      console.error('Auth error:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
