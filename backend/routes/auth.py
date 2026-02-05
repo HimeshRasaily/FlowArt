@@ -121,7 +121,7 @@ async def login(login_data: LoginRequest, db: AsyncIOMotorDatabase = Depends(get
         "token_type": "bearer"
     }
 
-@router.get("/me", response_model=dict)
+@router.get("/me", response_model=UserResponse)
 async def get_current_user_route(current_user = Depends(get_current_user)):
     """Get current authenticated user"""
     user = current_user.copy()
