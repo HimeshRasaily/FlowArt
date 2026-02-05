@@ -90,7 +90,7 @@ async def get_user(
 async def update_user(
     user_id: str,
     user_update: UserUpdate,
-    current_user = Depends(get_current_user),
+    current_user = Depends(get_current_user_with_db),
     db: AsyncIOMotorDatabase = Depends(get_db)
 ):
     """Update user profile (authenticated)"""
