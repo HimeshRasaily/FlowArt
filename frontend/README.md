@@ -1,70 +1,142 @@
-# Getting Started with Create React App
+# Aura - Artist Portfolio Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A high-performance, stateless React application showcasing artist portfolios with Gallery Luxe aesthetic.
 
-## Available Scripts
+## 🎨 Features
 
-In the project directory, you can run:
+- **Gallery Luxe Design**: Light, minimal aesthetic with #F9F9FB background and refined glassmorphism
+- **Aura Branding**: Geometric overlapping circles logo with purple accent (#8A2BE2)
+- **Smooth Animations**: Lenis smooth scrolling + Framer Motion animations
+- **Artist Directory**: Masonry grid layout with real-time filtering by medium and experience
+- **Mock Authentication**: Local state management for demo purposes
+- **Community Board**: Artist posts and open calls
+- **Responsive Design**: Fully responsive across all devices
 
-### `npm start`
+## 🚀 Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React** 19.0.0
+- **React Router** 7.5.1
+- **Framer Motion** - Advanced animations
+- **Lenis** - Buttery smooth scrolling
+- **Tailwind CSS** - Utility-first styling
+- **Shadcn/ui** - High-quality React components
+- **React Masonry CSS** - Pinterest-style layouts
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📦 Installation
 
-### `npm test`
+```bash
+# Install dependencies
+yarn install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Start development server
+yarn start
 
-### `npm run build`
+# Build for production
+yarn build
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🌐 Deployment
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Vercel Deployment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Push this repository to GitHub
+2. Import project in Vercel dashboard
+3. Deploy with default settings (Create React App)
 
-### `npm run eject`
+### Build Output
+- Build command: `yarn build`
+- Output directory: `build/`
+- Static files ready for any hosting platform
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🎭 Mock Data
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application uses local mock data for demonstration:
+- **6 Artist Profiles** with full details
+- **12 Artworks** across different mediums
+- **5 Community Posts** (Open Calls & Project Updates)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+All data is stored in `/src/data/mockData.js`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🔑 Mock Authentication
 
-## Learn More
+Authentication is simulated with localStorage:
+- Login/Signup sets local state
+- User data persists in browser storage
+- No backend required
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📁 Project Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+src/
+├── components/
+│   ├── ui/              # Shadcn components
+│   ├── Navbar.jsx
+│   ├── Logo.jsx
+│   ├── NexusCard.jsx
+│   ├── AuthModal.jsx
+│   └── LoadingSkeleton.jsx
+├── contexts/
+│   └── AuthContext.jsx  # Mock auth state
+├── data/
+│   └── mockData.js      # All mock data
+├── pages/
+│   ├── HomePage.jsx
+│   ├── Connectory.jsx
+│   └── CommunityBoard.jsx
+├── App.js
+└── index.css
+```
 
-### Code Splitting
+## 🎨 Color Palette
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Background**: `#F9F9FB` (Ultra-light grey)
+- **Text**: `#121212` (Deep obsidian)
+- **Accent**: `#000000` (Pure black)
+- **Highlight**: `#8A2BE2` (Blue violet)
+- **Cards**: White with subtle shadows
 
-### Analyzing the Bundle Size
+## ✨ Key Components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### HomePage
+- Hero section with ambient gradient background
+- Noise texture overlay
+- Featured artists horizontal scroll
+- Latest artworks grid
 
-### Making a Progressive Web App
+### Connectory
+- Masonry grid layout
+- Real-time filtering (medium, experience)
+- Search functionality
+- 6 curated artist profiles
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Community Board
+- Project updates and open calls
+- Tag-based filtering
+- Post type filtering
 
-### Advanced Configuration
+## 🛠 Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+# Start dev server with hot reload
+yarn start
 
-### Deployment
+# Lint code
+yarn lint
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# Build production bundle
+yarn build
+```
 
-### `npm run build` fails to minify
+## 📝 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This is a concept/portfolio project for demonstration purposes.
+
+## 🙏 Credits
+
+- Design inspired by follow.art aesthetic
+- Built with React and modern web technologies
+- Created as a high-performance static application
+
+---
+
+**Made with Emergent AI** - Converting full-stack to static for optimal Vercel deployment
