@@ -1,18 +1,17 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ArrowRight, Sparkles, Users, Palette } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { mockArtworks } from '../mockData';
-import { usersAPI } from '../services/api';
+import { mockArtworks, mockArtists } from '../data/mockData';
 
 const HomePage = () => {
   const containerRef = useRef(null);
   const heroRef = useRef(null);
   const featuredRef = useRef(null);
   
-  const [featuredArtists, setFeaturedArtists] = useState([]);
-  const [loadingArtists, setLoadingArtists] = useState(true);
+  // Use first 4 artists for featured section
+  const featuredArtists = mockArtists.slice(0, 4);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
