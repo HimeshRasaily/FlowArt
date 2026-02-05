@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 import Connectory from './pages/Connectory';
 import CommunityBoard from './pages/CommunityBoard';
 import { Toaster } from './components/ui/sonner';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -41,22 +42,24 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Navbar onAuthClick={handleAuthClick} />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/connectory" element={<Connectory />} />
-          <Route path="/community" element={<CommunityBoard />} />
-        </Routes>
-        <AuthModal
-          isOpen={authModalOpen}
-          onClose={() => setAuthModalOpen(false)}
-          initialMode={authMode}
-        />
-        <Toaster />
-      </BrowserRouter>
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <BrowserRouter>
+          <Navbar onAuthClick={handleAuthClick} />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/connectory" element={<Connectory />} />
+            <Route path="/community" element={<CommunityBoard />} />
+          </Routes>
+          <AuthModal
+            isOpen={authModalOpen}
+            onClose={() => setAuthModalOpen(false)}
+            initialMode={authMode}
+          />
+          <Toaster position="top-right" />
+        </BrowserRouter>
+      </div>
+    </AuthProvider>
   );
 }
 
