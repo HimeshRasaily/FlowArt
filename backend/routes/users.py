@@ -56,7 +56,7 @@ async def get_users(
     
     return users
 
-@router.get("/{user_id}", response_model=dict)
+@router.get("/{user_id}", response_model=UserResponse)
 async def get_user(
     user_id: str,
     db: AsyncIOMotorDatabase = Depends(get_db)
