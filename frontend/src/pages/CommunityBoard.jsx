@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, MessageCircle, Calendar, Tag, TrendingUp, Megaphone } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import { mockCommunityPosts } from '../mockData';
+import { mockCommunityPosts } from '../data/mockData';
 
 const CommunityBoard = () => {
   const [selectedTag, setSelectedTag] = useState('All');
