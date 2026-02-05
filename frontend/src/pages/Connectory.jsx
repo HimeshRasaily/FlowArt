@@ -1,29 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Filter, MapPin, Palette, Award } from 'lucide-react';
 import Masonry from 'react-masonry-css';
 import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
 import NexusCard from '../components/NexusCard';
-import { mockUsers } from '../mockData';
+import LoadingSkeleton from '../components/LoadingSkeleton';
+import { usersAPI } from '../services/api';
+import { toast } from 'sonner';
 
 const Connectory = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMedium, setSelectedMedium] = useState('All');
   const [selectedExperience, setSelectedExperience] = useState('All');
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const mediums = ['All', 'Digital', 'Canvas', 'Sculpture'];
   const experiences = ['All', 'Emerging', 'Mid-Career', 'Professional'];
 
-  const filteredUsers = mockUsers.filter((user) => {
-    const matchesSearch = user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         user.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         user.bio.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesMedium = selectedMedium === 'All' || user.medium === selectedMedium;
-    const matchesExperience = selectedExperience === 'All' || user.experience === selectedExperience;
-    
-    return matchesSearch && matchesMedium && matchesExperience;
-  });
+  // Fetch users from API
+  useEffect(() => {
+    const fetchUsers = async () => {
+      setLoading(true);
+      try {
+        const params = {};
+        if (selectedMedium !== 'All') params.medium = selectedMedium;
+        if (selectedExperience !== 'All') params.experience = selectedExperience;
+        if (searchQuery) params.search = searchQuery;
+
+        const data = await usersAPI.getUsers(params);
+        setUsers(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+        toast.error('Failed to load artists');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    // Debounce search
+    const timeoutId = setTimeout(() => {
+      fetchUsers();
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [selectedMedium, selectedExperience, searchQuery]);
 
   const breakpointColumns = {
     default: 3,
