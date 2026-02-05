@@ -22,8 +22,9 @@ def generate_username(name: str) -> str:
     return f"{username}_{suffix}"
 
 @router.post("/register", response_model=dict, status_code=status.HTTP_201_CREATED)
-async def register(user_data: UserCreate, db: AsyncIOMotorDatabase = Depends(get_db)):
+async def register(user_data: UserCreate, request: Request):
     """Register a new user"""
+    db = request.app.state.db
     # Check if email already exists
     existing_user = await db.users.find_one({"email": user_data.email})
     if existing_user:
