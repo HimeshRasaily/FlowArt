@@ -43,14 +43,14 @@ const Navbar = ({ onAuthClick }) => {
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className=\"fixed top-0 left-0 right-0 z-50 glass-dark\"
+      className="fixed top-0 left-0 right-0 z-50 glass-dark"
     >
-      <div className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">
-        <div className=\"flex items-center justify-between h-16\">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to=\"/\" className=\"flex items-center space-x-2\">
+          <Link to="/" className="flex items-center space-x-2">
             <Logo size={32} />
-            <span className=\"font-playfair text-xl font-bold text-[#121212]\">Aura</span>
+            <span className="font-playfair text-xl font-bold text-[#121212]">Aura</span>
           </Link>
 
           {/* Desktop Navigation */}
