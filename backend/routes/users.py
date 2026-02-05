@@ -14,6 +14,11 @@ def get_db():
     """Get database instance - will be overridden in main server.py"""
     pass
 
+async def get_current_user_with_db(credentials = Depends(security)):
+    """Get current user with database dependency"""
+    db = await get_db()
+    return await get_current_user(credentials, db)
+
 @router.get("", response_model=List[dict])
 async def get_users(
     medium: Optional[str] = Query(None),
