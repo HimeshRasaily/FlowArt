@@ -88,8 +88,9 @@ async def register(user_data: UserCreate, request: Request):
     }
 
 @router.post("/login", response_model=dict)
-async def login(login_data: LoginRequest, db: AsyncIOMotorDatabase = Depends(get_db)):
+async def login(login_data: LoginRequest, request: Request):
     """Login user"""
+    db = request.app.state.db
     # Find user by email
     user = await db.users.find_one({"email": login_data.email})
     if not user:
