@@ -26,7 +26,7 @@ app = FastAPI(title="FlowArt API", version="1.0.0")
 api_router = APIRouter(prefix="/api")
 
 # Database dependency
-async def get_database():
+def get_database():
     return db
 
 # Import routes
