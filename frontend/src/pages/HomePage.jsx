@@ -24,21 +24,6 @@ const HomePage = () => {
 
   const isInView = useInView(featuredRef, { once: true, amount: 0.3 });
 
-  useEffect(() => {
-    const fetchFeaturedArtists = async () => {
-      try {
-        const data = await usersAPI.getUsers({ limit: 4 });
-        setFeaturedArtists(data);
-      } catch (error) {
-        console.error('Error fetching featured artists:', error);
-      } finally {
-        setLoadingArtists(false);
-      }
-    };
-
-    fetchFeaturedArtists();
-  }, []);
-
   return (
     <div ref={containerRef} className="bg-[#F9F9FB]">
       {/* Hero Section with Ambient Gradient */}
