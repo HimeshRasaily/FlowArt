@@ -201,7 +201,7 @@ const HomePage = () => {
                   </Link>
                 </motion.div>
               ))
-            )}
+            }
           </div>
         </div>
       </section>
