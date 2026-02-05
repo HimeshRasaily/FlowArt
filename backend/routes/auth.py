@@ -135,8 +135,10 @@ async def get_current_user_with_db(credentials = Depends(security), request: Req
     return await get_current_user(credentials, db)
 
 @router.get("/me", response_model=UserResponse)
-async def get_current_user_route(request: Request, current_user = Depends(get_current_user_with_db)):
+async def get_current_user_route(request: Request, credentials = Depends(security)):
     """Get current authenticated user"""
+    db = request.app.state.db
+    current_user = await get_current_user(credentials, db)
     user = current_user.copy()
     user["id"] = str(user["_id"])
     user.pop("password")
