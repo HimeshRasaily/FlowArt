@@ -69,44 +69,44 @@ const Navbar = ({ onAuthClick }) => {
           </div>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex items-center space-x-4\">
+          <div className="hidden md:flex items-center space-x-4"
             {isAuthenticated ? (
               <>
-                <div className="flex items-center space-x-3\">
+                <div className="flex items-center space-x-3"
                   <img
                     src={user?.avatar}
                     alt={user?.name}
-                    className="w-8 h-8 rounded-full object-cover border-2 border-[#8A2BE2]\"
+                    className="w-8 h-8 rounded-full object-cover border-2 border-[#8A2BE2]"
                   />
-                  <span className="text-sm text-[#121212] font-medium\">{user?.name}</span>
+                  <span className="text-sm text-[#121212] font-medium"{user?.name}</span>
                 </div>
                 <Button
-                  variant=\"ghost\"
-                  size=\"sm\"
+                  variant="ghost"
+                  size="sm"
                   onClick={logout}
-                  className="text-[#121212] hover:text-[#8A2BE2] hover:bg-transparent\"
+                  className="text-[#121212] hover:text-[#8A2BE2] hover:bg-transparent"
                 >
-                  <LogOut className="w-4 h-4 mr-2\" />
+                  <LogOut className="w-4 h-4 mr-2" />
                   Logout
                 </Button>
               </>
             ) : (
               <>
                 <Button
-                  variant=\"ghost\"
-                  size=\"sm\"
+                  variant="ghost"
+                  size="sm"
                   onClick={() => onAuthClick('login')}
-                  className="text-[#121212] hover:text-[#8A2BE2] hover:bg-transparent\"
+                  className="text-[#121212] hover:text-[#8A2BE2] hover:bg-transparent"
                 >
-                  <LogIn className="w-4 h-4 mr-2\" />
+                  <LogIn className="w-4 h-4 mr-2" />
                   Sign In
                 </Button>
                 <Button
-                  size=\"sm\"
+                  size="sm"
                   onClick={() => onAuthClick('signup')}
-                  className="bg-[#000000] hover:bg-[#333333] text-white\"
+                  className="bg-[#000000] hover:bg-[#333333] text-white"
                 >
-                  <User className="w-4 h-4 mr-2\" />
+                  <User className="w-4 h-4 mr-2" />
                   Join
                 </Button>
               </>
@@ -116,7 +116,7 @@ const Navbar = ({ onAuthClick }) => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-[#121212] hover:text-[#8A2BE2] transition-colors\"
+            className="md:hidden text-[#121212] hover:text-[#8A2BE2] transition-colors"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -130,9 +130,9 @@ const Navbar = ({ onAuthClick }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-dark border-t border-[#E6E6EB]\"
+            className="md:hidden glass-dark border-t border-[#E6E6EB]"
           >
-            <div className="px-4 py-4 space-y-3\">
+            <div className="px-4 py-4 space-y-3"
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
@@ -145,50 +145,50 @@ const Navbar = ({ onAuthClick }) => {
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-4 border-t border-[#E6E6EB] space-y-2\">
+              <div className="pt-4 border-t border-[#E6E6EB] space-y-2"
                 {isAuthenticated ? (
                   <>
-                    <div className="flex items-center space-x-3 px-3 py-2\">
+                    <div className="flex items-center space-x-3 px-3 py-2"
                       <img
                         src={user?.avatar}
                         alt={user?.name}
-                        className="w-8 h-8 rounded-full object-cover border-2 border-[#8A2BE2]\"
+                        className="w-8 h-8 rounded-full object-cover border-2 border-[#8A2BE2]"
                       />
-                      <span className="text-sm text-[#121212] font-medium\">{user?.name}</span>
+                      <span className="text-sm text-[#121212] font-medium"{user?.name}</span>
                     </div>
                     <Button
-                      variant=\"outline\"
-                      className="w-full justify-start border-[#E6E6EB] text-[#121212]\"
+                      variant="outline"
+                      className="w-full justify-start border-[#E6E6EB] text-[#121212]"
                       onClick={() => {
                         logout();
                         setMobileMenuOpen(false);
                       }}
                     >
-                      <LogOut className="w-4 h-4 mr-2\" />
+                      <LogOut className="w-4 h-4 mr-2" />
                       Logout
                     </Button>
                   </>
                 ) : (
                   <>
                     <Button
-                      variant=\"outline\"
-                      className="w-full justify-start border-[#E6E6EB] text-[#121212]\"
+                      variant="outline"
+                      className="w-full justify-start border-[#E6E6EB] text-[#121212]"
                       onClick={() => {
                         onAuthClick('login');
                         setMobileMenuOpen(false);
                       }}
                     >
-                      <LogIn className="w-4 h-4 mr-2\" />
+                      <LogIn className="w-4 h-4 mr-2" />
                       Sign In
                     </Button>
                     <Button
-                      className="w-full justify-start bg-[#000000] hover:bg-[#333333] text-white\"
+                      className="w-full justify-start bg-[#000000] hover:bg-[#333333] text-white"
                       onClick={() => {
                         onAuthClick('signup');
                         setMobileMenuOpen(false);
                       }}
                     >
-                      <User className="w-4 h-4 mr-2\" />
+                      <User className="w-4 h-4 mr-2" />
                       Join Aura
                     </Button>
                   </>
