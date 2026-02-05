@@ -147,27 +147,53 @@ const Navbar = ({ onAuthClick }) => {
                 </Link>
               ))}
               <div className="pt-4 border-t border-[#1F232D] space-y-2">
-                <Button
-                  variant="outline"
-                  className="w-full justify-start"
-                  onClick={() => {
-                    onAuthClick('login');
-                    setMobileMenuOpen(false);
-                  }}
-                >
-                  <LogIn className="w-4 h-4 mr-2" />
-                  Sign In
-                </Button>
-                <Button
-                  className="w-full justify-start bg-[#6366F1] hover:bg-[#5558E3]"
-                  onClick={() => {
-                    onAuthClick('signup');
-                    setMobileMenuOpen(false);
-                  }}
-                >
-                  <User className="w-4 h-4 mr-2" />
-                  Join FlowArt
-                </Button>
+                {isAuthenticated ? (
+                  <>
+                    <div className="flex items-center space-x-3 px-3 py-2">
+                      <img
+                        src={user?.avatar}
+                        alt={user?.name}
+                        className="w-8 h-8 rounded-full object-cover border-2 border-[#6366F1]"
+                      />
+                      <span className="text-sm text-[#F4F4F9]">{user?.name}</span>
+                    </div>
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start"
+                      onClick={() => {
+                        logout();
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start"
+                      onClick={() => {
+                        onAuthClick('login');
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <LogIn className="w-4 h-4 mr-2" />
+                      Sign In
+                    </Button>
+                    <Button
+                      className="w-full justify-start bg-[#6366F1] hover:bg-[#5558E3]"
+                      onClick={() => {
+                        onAuthClick('signup');
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <User className="w-4 h-4 mr-2" />
+                      Join FlowArt
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
