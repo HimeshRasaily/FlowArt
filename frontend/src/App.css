@@ -1,7 +1,7 @@
-/* FlowArt App Styles */
+/* FlowArt App Styles - Gallery Luxe Theme */
 .App {
     min-height: 100vh;
-    background-color: #0B0E14;
+    background-color: #F9F9FB;
     position: relative;
 }
 
@@ -16,7 +16,7 @@ a, button {
 
 /* Ensure smooth transitions for interactive elements */
 button, a, input, textarea {
-    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
 }
 
 /* Remove default link styles */
@@ -24,3 +24,13 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+/* Card shadows */
+.card-shadow {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.card-shadow-hover:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
