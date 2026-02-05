@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Filter, MapPin, Palette, Award } from 'lucide-react';
+import { Search, Filter, Palette, Award } from 'lucide-react';
 import Masonry from 'react-masonry-css';
 import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
@@ -19,7 +19,6 @@ const Connectory = () => {
   const mediums = ['All', 'Digital', 'Canvas', 'Sculpture'];
   const experiences = ['All', 'Emerging', 'Mid-Career', 'Professional'];
 
-  // Fetch users from API
   useEffect(() => {
     const fetchUsers = async () => {
       setLoading(true);
@@ -39,7 +38,6 @@ const Connectory = () => {
       }
     };
 
-    // Debounce search
     const timeoutId = setTimeout(() => {
       fetchUsers();
     }, 300);
@@ -54,7 +52,7 @@ const Connectory = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0E14] pt-24 pb-16 px-4">
+    <div className="min-h-screen bg-[#F9F9FB] pt-24 pb-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -63,10 +61,10 @@ const Connectory = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="font-playfair text-6xl font-bold text-[#F4F4F9] mb-4">
+          <h1 className="font-playfair text-6xl font-bold text-[#121212] mb-4">
             The Connectory
           </h1>
-          <p className="text-[#9CA3AF] text-lg max-w-2xl mx-auto">
+          <p className="text-[#646464] text-lg max-w-2xl mx-auto">
             Discover and connect with artists from around the world. Filter by medium, location, and experience level.
           </p>
         </motion.div>
@@ -80,29 +78,29 @@ const Connectory = () => {
         >
           {/* Search Bar */}
           <div className="relative max-w-2xl mx-auto mb-8">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#9CA3AF]" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#646464]" />
             <Input
               type="text"
               placeholder="Search artists by name, username, or style..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-12 h-14 bg-[#1F232D] border-[#1F232D] text-[#F4F4F9] placeholder:text-[#6B7280] focus:border-[#6366F1] rounded-xl"
+              className="pl-12 h-14 bg-white border-[#E6E6EB] text-[#121212] placeholder:text-[#9CA3AF] focus:border-[#8A2BE2] rounded-xl shadow-sm"
             />
           </div>
 
           {/* Filters */}
           <div className="glass rounded-2xl p-6">
             <div className="flex items-center mb-4">
-              <Filter className="w-5 h-5 text-[#6366F1] mr-2" />
-              <span className="font-inter font-semibold text-[#F4F4F9]">Filters</span>
+              <Filter className="w-5 h-5 text-[#8A2BE2] mr-2" />
+              <span className="font-inter font-semibold text-[#121212]">Filters</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Medium Filter */}
               <div>
                 <div className="flex items-center mb-3">
-                  <Palette className="w-4 h-4 text-[#9CA3AF] mr-2" />
-                  <label className="text-sm font-medium text-[#9CA3AF]">Medium</label>
+                  <Palette className="w-4 h-4 text-[#646464] mr-2" />
+                  <label className="text-sm font-medium text-[#646464]">Medium</label>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {mediums.map((medium) => (
@@ -112,8 +110,8 @@ const Connectory = () => {
                       variant={selectedMedium === medium ? 'default' : 'outline'}
                       onClick={() => setSelectedMedium(medium)}
                       className={selectedMedium === medium
-                        ? 'bg-[#6366F1] hover:bg-[#5558E3] text-white'
-                        : 'border-[#1F232D] text-[#9CA3AF] hover:text-[#F4F4F9] hover:bg-[#1F232D]'}
+                        ? 'bg-[#000000] hover:bg-[#333333] text-white'
+                        : 'border-[#E6E6EB] text-[#646464] hover:text-[#121212] hover:bg-[#F9F9FB]'}
                     >
                       {medium}
                     </Button>
@@ -124,8 +122,8 @@ const Connectory = () => {
               {/* Experience Filter */}
               <div>
                 <div className="flex items-center mb-3">
-                  <Award className="w-4 h-4 text-[#9CA3AF] mr-2" />
-                  <label className="text-sm font-medium text-[#9CA3AF]">Experience</label>
+                  <Award className="w-4 h-4 text-[#646464] mr-2" />
+                  <label className="text-sm font-medium text-[#646464]">Experience</label>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {experiences.map((exp) => (
@@ -135,8 +133,8 @@ const Connectory = () => {
                       variant={selectedExperience === exp ? 'default' : 'outline'}
                       onClick={() => setSelectedExperience(exp)}
                       className={selectedExperience === exp
-                        ? 'bg-[#6366F1] hover:bg-[#5558E3] text-white'
-                        : 'border-[#1F232D] text-[#9CA3AF] hover:text-[#F4F4F9] hover:bg-[#1F232D]'}
+                        ? 'bg-[#000000] hover:bg-[#333333] text-white'
+                        : 'border-[#E6E6EB] text-[#646464] hover:text-[#121212] hover:bg-[#F9F9FB]'}
                     >
                       {exp}
                     </Button>
@@ -154,12 +152,12 @@ const Connectory = () => {
           transition={{ duration: 0.4, delay: 0.3 }}
           className="mb-6"
         >
-          <p className="text-[#9CA3AF]">
+          <p className="text-[#646464]">
             {loading ? (
               'Loading artists...'
             ) : (
               <>
-                Showing <span className="text-[#6366F1] font-semibold">{users.length}</span> artists
+                Showing <span className="text-[#8A2BE2] font-semibold">{users.length}</span> artists
               </>
             )}
           </p>
@@ -180,7 +178,7 @@ const Connectory = () => {
           </Masonry>
         )}
 
-        {/* Artists Grid - Masonry Layout */}
+        {/* Artists Grid */}
         {!loading && (
           <Masonry
             breakpointCols={breakpointColumns}
@@ -209,9 +207,9 @@ const Connectory = () => {
             animate={{ opacity: 1 }}
             className="text-center py-20"
           >
-            <Search className="w-16 h-16 text-[#9CA3AF] mx-auto mb-4" />
-            <h3 className="font-playfair text-2xl font-bold text-[#F4F4F9] mb-2">No artists found</h3>
-            <p className="text-[#9CA3AF]">Try adjusting your filters or search query</p>
+            <Search className="w-16 h-16 text-[#646464] mx-auto mb-4" />
+            <h3 className="font-playfair text-2xl font-bold text-[#121212] mb-2">No artists found</h3>
+            <p className="text-[#646464]">Try adjusting your filters or search query</p>
           </motion.div>
         )}
       </div>
