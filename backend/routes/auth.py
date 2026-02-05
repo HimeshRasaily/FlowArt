@@ -122,7 +122,7 @@ async def login(login_data: LoginRequest, db: AsyncIOMotorDatabase = Depends(get
     }
 
 @router.get("/me", response_model=UserResponse)
-async def get_current_user_route(current_user = Depends(get_current_user)):
+async def get_current_user_route(current_user = Depends(lambda: get_current_user(db=get_db()))):
     """Get current authenticated user"""
     user = current_user.copy()
     user["id"] = str(user["_id"])
