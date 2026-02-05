@@ -121,18 +121,18 @@ async def login(login_data: LoginRequest, request: Request):
         "token_type": "bearer"
     }
 
-async def get_current_user_with_db(credentials = Depends(security), request: Request = None):
-    """Get current user with database dependency"""
-    if request:
-        db = request.app.state.db
-    else:
-        # Fallback to creating connection
-        from motor.motor_asyncio import AsyncIOMotorClient
-        import os
-        mongo_url = os.environ['MONGO_URL']
-        client = AsyncIOMotorClient(mongo_url)
-        db = client[os.environ['DB_NAME']]
-    return await get_current_user(credentials, db)
+# async def get_current_user_with_db(credentials = Depends(security), request: Request = None):
+#     """Get current user with database dependency"""
+#     if request:
+#         db = request.app.state.db
+#     else:
+#         # Fallback to creating connection
+#         from motor.motor_asyncio import AsyncIOMotorClient
+#         import os
+#         mongo_url = os.environ['MONGO_URL']
+#         client = AsyncIOMotorClient(mongo_url)
+#         db = client[os.environ['DB_NAME']]
+#     return await get_current_user(credentials, db)
 
 @router.get("/me", response_model=UserResponse)
 async def get_current_user_route(request: Request, credentials = Depends(security)):
