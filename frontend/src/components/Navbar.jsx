@@ -71,23 +71,47 @@ const Navbar = ({ onAuthClick }) => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => onAuthClick('login')}
-              className="text-[#F4F4F9] hover:text-[#6366F1] hover:bg-transparent"
-            >
-              <LogIn className="w-4 h-4 mr-2" />
-              Sign In
-            </Button>
-            <Button
-              size="sm"
-              onClick={() => onAuthClick('signup')}
-              className="bg-[#6366F1] hover:bg-[#5558E3] text-white"
-            >
-              <User className="w-4 h-4 mr-2" />
-              Join
-            </Button>
+            {isAuthenticated ? (
+              <>
+                <div className="flex items-center space-x-3">
+                  <img
+                    src={user?.avatar}
+                    alt={user?.name}
+                    className="w-8 h-8 rounded-full object-cover border-2 border-[#6366F1]"
+                  />
+                  <span className="text-sm text-[#F4F4F9]">{user?.name}</span>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={logout}
+                  className="text-[#F4F4F9] hover:text-[#6366F1] hover:bg-transparent"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => onAuthClick('login')}
+                  className="text-[#F4F4F9] hover:text-[#6366F1] hover:bg-transparent"
+                >
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Sign In
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={() => onAuthClick('signup')}
+                  className="bg-[#6366F1] hover:bg-[#5558E3] text-white"
+                >
+                  <User className="w-4 h-4 mr-2" />
+                  Join
+                </Button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
