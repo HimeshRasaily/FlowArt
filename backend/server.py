@@ -28,6 +28,9 @@ app.state.db = db
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
+# Import routes after app is created
+from routes import auth, users
+
 
 # Define Models
 class StatusCheck(BaseModel):
