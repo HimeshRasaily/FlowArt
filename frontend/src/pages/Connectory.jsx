@@ -161,10 +161,9 @@ const Connectory = () => {
               </motion.div>
             ))}
           </Masonry>
-        )}
 
         {/* No Results */}
-        {!loading && users.length === 0 && (
+        {filteredUsers.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
