@@ -61,9 +61,10 @@ async def get_users(
 @router.get("/{user_id}", response_model=UserResponse)
 async def get_user(
     user_id: str,
-    db: AsyncIOMotorDatabase = Depends(get_db)
+    request: Request
 ):
     """Get a specific user by ID"""
+    db = request.app.state.db
     if not ObjectId.is_valid(user_id):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
