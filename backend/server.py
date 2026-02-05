@@ -20,10 +20,21 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 # Create the main app without a prefix
-app = FastAPI()
+app = FastAPI(title="FlowArt API", version="1.0.0")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
+
+# Database dependency
+async def get_database():
+    return db
+
+# Import routes
+from routes import auth, users
+
+# Override get_db in route modules
+auth.get_db = get_database
+users.get_db = get_database
 
 
 # Define Models
