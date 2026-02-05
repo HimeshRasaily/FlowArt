@@ -52,13 +52,16 @@ const NexusCard = ({ user, compact = false }) => {
   }
 
   return (
-    <div className="perspective-1000 w-full max-w-md mx-auto" style={{ perspective: '1000px' }}>
+    <div className="w-full max-w-md mx-auto" style={{ perspective: '2000px' }}>
       <motion.div
         animate={isFlipped ? 'back' : 'front'}
         variants={cardVariants}
-        transition={{ duration: 0.6, ease: 'easeInOut' }}
+        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         className="relative w-full"
-        style={{ transformStyle: 'preserve-3d' }}
+        style={{ 
+          transformStyle: 'preserve-3d',
+          backfaceVisibility: 'hidden'
+        }}
       >
         {/* Front of Card */}
         <div
