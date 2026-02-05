@@ -6,7 +6,7 @@ import re
 
 from models.user import UserCreate, UserResponse, Token, LoginRequest
 from utils.auth import verify_password, get_password_hash, create_access_token
-from utils.dependencies import get_current_user
+from utils.dependencies import get_current_user, security
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
