@@ -155,31 +155,54 @@ const Connectory = () => {
           className="mb-6"
         >
           <p className="text-[#9CA3AF]">
-            Showing <span className="text-[#6366F1] font-semibold">{filteredUsers.length}</span> artists
+            {loading ? (
+              'Loading artists...'
+            ) : (
+              <>
+                Showing <span className="text-[#6366F1] font-semibold">{users.length}</span> artists
+              </>
+            )}
           </p>
         </motion.div>
 
+        {/* Loading State */}
+        {loading && (
+          <Masonry
+            breakpointCols={breakpointColumns}
+            className="flex -ml-4 w-auto"
+            columnClassName="pl-4 bg-clip-padding"
+          >
+            {[...Array(6)].map((_, index) => (
+              <div key={index} className="mb-4">
+                <LoadingSkeleton type="card" />
+              </div>
+            ))}
+          </Masonry>
+        )}
+
         {/* Artists Grid - Masonry Layout */}
-        <Masonry
-          breakpointCols={breakpointColumns}
-          className="flex -ml-4 w-auto"
-          columnClassName="pl-4 bg-clip-padding"
-        >
-          {filteredUsers.map((user, index) => (
-            <motion.div
-              key={user.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="mb-4"
-            >
-              <NexusCard user={user} compact />
-            </motion.div>
-          ))}
-        </Masonry>
+        {!loading && (
+          <Masonry
+            breakpointCols={breakpointColumns}
+            className="flex -ml-4 w-auto"
+            columnClassName="pl-4 bg-clip-padding"
+          >
+            {users.map((user, index) => (
+              <motion.div
+                key={user.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="mb-4"
+              >
+                <NexusCard user={user} compact />
+              </motion.div>
+            ))}
+          </Masonry>
+        )}
 
         {/* No Results */}
-        {filteredUsers.length === 0 && (
+        {!loading && users.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
