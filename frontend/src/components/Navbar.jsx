@@ -47,13 +47,11 @@ const Navbar = ({ onAuthClick }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <Logo size={32} />
             <span className="font-playfair text-xl font-bold text-[#121212]">Aura</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
@@ -68,17 +66,16 @@ const Navbar = ({ onAuthClick }) => {
             ))}
           </div>
 
-          {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex items-center space-x-4"
+          <div className="hidden md:flex items-center space-x-4">
             {isAuthenticated ? (
               <>
-                <div className="flex items-center space-x-3"
+                <div className="flex items-center space-x-3">
                   <img
                     src={user?.avatar}
                     alt={user?.name}
                     className="w-8 h-8 rounded-full object-cover border-2 border-[#8A2BE2]"
                   />
-                  <span className="text-sm text-[#121212] font-medium"{user?.name}</span>
+                  <span className="text-sm text-[#121212] font-medium">{user?.name}</span>
                 </div>
                 <Button
                   variant="ghost"
@@ -113,7 +110,6 @@ const Navbar = ({ onAuthClick }) => {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden text-[#121212] hover:text-[#8A2BE2] transition-colors"
@@ -123,7 +119,6 @@ const Navbar = ({ onAuthClick }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -132,7 +127,7 @@ const Navbar = ({ onAuthClick }) => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden glass-dark border-t border-[#E6E6EB]"
           >
-            <div className="px-4 py-4 space-y-3"
+            <div className="px-4 py-4 space-y-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
@@ -145,16 +140,16 @@ const Navbar = ({ onAuthClick }) => {
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-4 border-t border-[#E6E6EB] space-y-2"
+              <div className="pt-4 border-t border-[#E6E6EB] space-y-2">
                 {isAuthenticated ? (
                   <>
-                    <div className="flex items-center space-x-3 px-3 py-2"
+                    <div className="flex items-center space-x-3 px-3 py-2">
                       <img
                         src={user?.avatar}
                         alt={user?.name}
                         className="w-8 h-8 rounded-full object-cover border-2 border-[#8A2BE2]"
                       />
-                      <span className="text-sm text-[#121212] font-medium"{user?.name}</span>
+                      <span className="text-sm text-[#121212] font-medium">{user?.name}</span>
                     </div>
                     <Button
                       variant="outline"
