@@ -10,9 +10,7 @@ from utils.dependencies import get_current_user, security
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
-def get_db():
-    """Get database instance - will be overridden in main server.py"""
-    pass
+ 
 
 def generate_username(name: str) -> str:
     """Generate a username from name"""
