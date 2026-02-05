@@ -1,15 +1,19 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ArrowRight, Sparkles, Users, Palette } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { mockArtworks, mockUsers } from '../mockData';
+import { mockArtworks } from '../mockData';
+import { usersAPI } from '../services/api';
 
 const HomePage = () => {
   const containerRef = useRef(null);
   const heroRef = useRef(null);
   const featuredRef = useRef(null);
   
+  const [featuredArtists, setFeaturedArtists] = useState([]);
+  const [loadingArtists, setLoadingArtists] = useState(true);
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start']
@@ -20,8 +24,21 @@ const HomePage = () => {
 
   const isInView = useInView(featuredRef, { once: true, amount: 0.3 });
 
-  // Featured artists for horizontal scroll
-  const featuredArtists = mockUsers.slice(0, 4);
+  // Fetch featured artists
+  useEffect(() => {
+    const fetchFeaturedArtists = async () => {
+      try {
+        const data = await usersAPI.getUsers({ limit: 4 });
+        setFeaturedArtists(data);
+      } catch (error) {
+        console.error('Error fetching featured artists:', error);
+      } finally {
+        setLoadingArtists(false);
+      }
+    };
+
+    fetchFeaturedArtists();
+  }, []);
 
   return (
     <div ref={containerRef} className="bg-[#0B0E14]">
