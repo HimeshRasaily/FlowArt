@@ -155,7 +155,39 @@ const HomePage = () => {
 
         <div className="relative">
           <div className="flex space-x-6 px-4 overflow-x-auto hide-scrollbar pb-4">
-            {featuredArtists.map((artist, index) => (
+            {loadingArtists ? (
+              // Loading skeletons
+              [...Array(4)].map((_, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="flex-shrink-0 w-80"
+                >
+                  <div className="glass rounded-2xl overflow-hidden">
+                    <motion.div
+                      animate={{ opacity: [0.5, 1, 0.5] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                      className="h-64 bg-[#1F232D]"
+                    />
+                    <div className="p-6 space-y-3">
+                      <motion.div
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                        className="h-4 bg-[#1F232D] rounded"
+                      />
+                      <motion.div
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 0.1 }}
+                        className="h-3 bg-[#1F232D] rounded w-3/4"
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              featuredArtists.map((artist, index) => (
               <motion.div
                 key={artist.id}
                 initial={{ opacity: 0, x: 50 }}
