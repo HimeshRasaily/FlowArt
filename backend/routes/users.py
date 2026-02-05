@@ -88,10 +88,11 @@ async def get_user(
 async def update_user(
     user_id: str,
     user_update: UserUpdate,
-    current_user = Depends(get_current_user_with_db),
-    db: AsyncIOMotorDatabase = Depends(get_db)
+    request: Request,
+    current_user = Depends(get_current_user_with_db)
 ):
     """Update user profile (authenticated)"""
+    db = request.app.state.db
     # Check if user is updating their own profile
     if str(current_user["_id"]) != user_id:
         raise HTTPException(
