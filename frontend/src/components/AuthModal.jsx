@@ -166,9 +166,17 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
 
                 <Button
                   type="submit"
+                  disabled={loading}
                   className="w-full bg-[#6366F1] hover:bg-[#5558E3] text-white h-11"
                 >
-                  {mode === 'login' ? 'Sign In' : 'Create Account'}
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      {mode === 'login' ? 'Signing in...' : 'Creating account...'}
+                    </>
+                  ) : (
+                    mode === 'login' ? 'Sign In' : 'Create Account'
+                  )}
                 </Button>
               </form>
 
