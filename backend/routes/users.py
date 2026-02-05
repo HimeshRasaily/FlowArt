@@ -10,24 +10,21 @@ from utils.dependencies import get_current_user, security
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
-def get_db():
-    """Get database instance - will be overridden in main server.py"""
-    pass
-
 async def get_current_user_with_db(credentials = Depends(security)):
     """Get current user with database dependency"""
-    db = await get_db()
-    return await get_current_user(credentials, db)
+    # This will need to be updated to use request.app.state.db
+    pass
 
 @router.get("", response_model=List[dict])
 async def get_users(
+    request: Request,
     medium: Optional[str] = Query(None),
     experience: Optional[str] = Query(None),
     search: Optional[str] = Query(None),
-    limit: Optional[int] = Query(None),
-    db: AsyncIOMotorDatabase = Depends(get_db)
+    limit: Optional[int] = Query(None)
 ):
     """Get all users with optional filters"""
+    db = request.app.state.db
     query = {}
     
     # Filter by medium
