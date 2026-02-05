@@ -101,3 +101,124 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Test the FlowArt backend APIs including authentication endpoints (register, login, me) and user endpoints (get all users, filter by medium/experience, search, get specific user)"
+
+backend:
+  - task: "User Registration API"
+    implemented: true
+    working: true
+    file: "/app/backend/routes/auth.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "POST /api/auth/register working correctly. Returns user object and access_token. Properly handles duplicate email validation."
+
+  - task: "User Login API"
+    implemented: true
+    working: true
+    file: "/app/backend/routes/auth.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "POST /api/auth/login working correctly. Validates credentials and returns user object with access_token."
+
+  - task: "Get Current User API"
+    implemented: true
+    working: true
+    file: "/app/backend/routes/auth.py"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "testing"
+          comment: "GET /api/auth/me was failing with NameError: name 'get_db' is not defined in get_current_user_with_db function."
+        - working: true
+          agent: "testing"
+          comment: "Fixed dependency issue by updating /me endpoint to use request.app.state.db directly. Now returns current user details correctly with Bearer token authentication."
+
+  - task: "Get All Users API"
+    implemented: true
+    working: true
+    file: "/app/backend/routes/users.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "GET /api/users working correctly. Returns array of 11 users with all required fields (id, name, username, email, bio, avatar, etc.)."
+
+  - task: "Filter Users by Medium API"
+    implemented: true
+    working: true
+    file: "/app/backend/routes/users.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "GET /api/users?medium=Digital working correctly. Returns 5 Digital artists, filter working properly."
+
+  - task: "Filter Users by Experience API"
+    implemented: true
+    working: true
+    file: "/app/backend/routes/users.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "GET /api/users?experience=Professional working correctly. Returns 6 Professional artists, filter working properly."
+
+  - task: "Search Users API"
+    implemented: true
+    working: true
+    file: "/app/backend/routes/users.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "GET /api/users?search=elena working correctly. Found 1 user matching 'elena' (Elena Rodriguez). Search functionality working across name, username, and bio fields."
+
+  - task: "Get Specific User API"
+    implemented: true
+    working: true
+    file: "/app/backend/routes/users.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "GET /api/users/:id working correctly. Returns complete user object for valid user ID. Proper ObjectId validation implemented."
+
+frontend:
+  # No frontend testing performed as per instructions
+
+metadata:
+  created_by: "testing_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus: []
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+    - agent: "testing"
+      message: "Completed comprehensive backend API testing for FlowArt. Fixed critical issue in GET /api/auth/me endpoint. All 8 backend APIs are now working correctly. Authentication flow (register/login/me) and user management endpoints (list/filter/search/get) all functioning as expected. Ready for production use."
