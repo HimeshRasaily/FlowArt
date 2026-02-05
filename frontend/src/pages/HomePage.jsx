@@ -226,7 +226,8 @@ const HomePage = () => {
                   </div>
                 </Link>
               </motion.div>
-            ))}
+            ))
+            )}
           </div>
         </div>
       </section>
