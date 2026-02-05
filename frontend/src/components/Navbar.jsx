@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, User, LogIn, LogOut } from 'lucide-react';
 import { Button } from './ui/button';
 import { useAuth } from '../contexts/AuthContext';
+import Logo from './Logo';
 
 const Navbar = ({ onAuthClick }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -42,26 +43,24 @@ const Navbar = ({ onAuthClick }) => {
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 right-0 z-50 glass-dark"
+      className=\"fixed top-0 left-0 right-0 z-50 glass-dark\"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">
+        <div className=\"flex items-center justify-between h-16\">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">F</span>
-            </div>
-            <span className="font-playfair text-xl font-bold text-[#F4F4F9]">FlowArt</span>
+          <Link to=\"/\" className=\"flex items-center space-x-2\">
+            <Logo size={32} />
+            <span className=\"font-playfair text-xl font-bold text-[#121212]\">Aura</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className=\"hidden md:flex items-center space-x-8\">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`font-inter text-sm font-medium transition-colors duration-200 hover:text-[#6366F1] ${
-                  location.pathname === link.path ? 'text-[#6366F1]' : 'text-[#F4F4F9]'
+                className={`font-inter text-sm font-medium transition-colors duration-200 hover:text-[#8A2BE2] ${
+                  location.pathname === link.path ? 'text-[#8A2BE2]' : 'text-[#121212]'
                 }`}
               >
                 {link.label}
@@ -70,44 +69,44 @@ const Navbar = ({ onAuthClick }) => {
           </div>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className=\"hidden md:flex items-center space-x-4\">
             {isAuthenticated ? (
               <>
-                <div className="flex items-center space-x-3">
+                <div className=\"flex items-center space-x-3\">
                   <img
                     src={user?.avatar}
                     alt={user?.name}
-                    className="w-8 h-8 rounded-full object-cover border-2 border-[#6366F1]"
+                    className=\"w-8 h-8 rounded-full object-cover border-2 border-[#8A2BE2]\"
                   />
-                  <span className="text-sm text-[#F4F4F9]">{user?.name}</span>
+                  <span className=\"text-sm text-[#121212] font-medium\">{user?.name}</span>
                 </div>
                 <Button
-                  variant="ghost"
-                  size="sm"
+                  variant=\"ghost\"
+                  size=\"sm\"
                   onClick={logout}
-                  className="text-[#F4F4F9] hover:text-[#6366F1] hover:bg-transparent"
+                  className=\"text-[#121212] hover:text-[#8A2BE2] hover:bg-transparent\"
                 >
-                  <LogOut className="w-4 h-4 mr-2" />
+                  <LogOut className=\"w-4 h-4 mr-2\" />
                   Logout
                 </Button>
               </>
             ) : (
               <>
                 <Button
-                  variant="ghost"
-                  size="sm"
+                  variant=\"ghost\"
+                  size=\"sm\"
                   onClick={() => onAuthClick('login')}
-                  className="text-[#F4F4F9] hover:text-[#6366F1] hover:bg-transparent"
+                  className=\"text-[#121212] hover:text-[#8A2BE2] hover:bg-transparent\"
                 >
-                  <LogIn className="w-4 h-4 mr-2" />
+                  <LogIn className=\"w-4 h-4 mr-2\" />
                   Sign In
                 </Button>
                 <Button
-                  size="sm"
+                  size=\"sm\"
                   onClick={() => onAuthClick('signup')}
-                  className="bg-[#6366F1] hover:bg-[#5558E3] text-white"
+                  className=\"bg-[#000000] hover:bg-[#333333] text-white\"
                 >
-                  <User className="w-4 h-4 mr-2" />
+                  <User className=\"w-4 h-4 mr-2\" />
                   Join
                 </Button>
               </>
@@ -117,7 +116,7 @@ const Navbar = ({ onAuthClick }) => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-[#F4F4F9] hover:text-[#6366F1] transition-colors"
+            className=\"md:hidden text-[#121212] hover:text-[#8A2BE2] transition-colors\"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -131,66 +130,66 @@ const Navbar = ({ onAuthClick }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-dark border-t border-[#1F232D]"
+            className=\"md:hidden glass-dark border-t border-[#E6E6EB]\"
           >
-            <div className="px-4 py-4 space-y-3">
+            <div className=\"px-4 py-4 space-y-3\">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block py-2 font-inter text-sm font-medium transition-colors ${
-                    location.pathname === link.path ? 'text-[#6366F1]' : 'text-[#F4F4F9]'
+                    location.pathname === link.path ? 'text-[#8A2BE2]' : 'text-[#121212]'
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-4 border-t border-[#1F232D] space-y-2">
+              <div className=\"pt-4 border-t border-[#E6E6EB] space-y-2\">
                 {isAuthenticated ? (
                   <>
-                    <div className="flex items-center space-x-3 px-3 py-2">
+                    <div className=\"flex items-center space-x-3 px-3 py-2\">
                       <img
                         src={user?.avatar}
                         alt={user?.name}
-                        className="w-8 h-8 rounded-full object-cover border-2 border-[#6366F1]"
+                        className=\"w-8 h-8 rounded-full object-cover border-2 border-[#8A2BE2]\"
                       />
-                      <span className="text-sm text-[#F4F4F9]">{user?.name}</span>
+                      <span className=\"text-sm text-[#121212] font-medium\">{user?.name}</span>
                     </div>
                     <Button
-                      variant="outline"
-                      className="w-full justify-start"
+                      variant=\"outline\"
+                      className=\"w-full justify-start border-[#E6E6EB] text-[#121212]\"
                       onClick={() => {
                         logout();
                         setMobileMenuOpen(false);
                       }}
                     >
-                      <LogOut className="w-4 h-4 mr-2" />
+                      <LogOut className=\"w-4 h-4 mr-2\" />
                       Logout
                     </Button>
                   </>
                 ) : (
                   <>
                     <Button
-                      variant="outline"
-                      className="w-full justify-start"
+                      variant=\"outline\"
+                      className=\"w-full justify-start border-[#E6E6EB] text-[#121212]\"
                       onClick={() => {
                         onAuthClick('login');
                         setMobileMenuOpen(false);
                       }}
                     >
-                      <LogIn className="w-4 h-4 mr-2" />
+                      <LogIn className=\"w-4 h-4 mr-2\" />
                       Sign In
                     </Button>
                     <Button
-                      className="w-full justify-start bg-[#6366F1] hover:bg-[#5558E3]"
+                      className=\"w-full justify-start bg-[#000000] hover:bg-[#333333] text-white\"
                       onClick={() => {
                         onAuthClick('signup');
                         setMobileMenuOpen(false);
                       }}
                     >
-                      <User className="w-4 h-4 mr-2" />
-                      Join FlowArt
+                      <User className=\"w-4 h-4 mr-2\" />
+                      Join Aura
                     </Button>
                   </>
                 )}
