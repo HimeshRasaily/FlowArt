@@ -11,11 +11,13 @@ const CommunityBoard = () => {
   const allTags = ['All', ...new Set(mockCommunityPosts.flatMap(post => post.tags))];
   const postTypes = ['All', 'Open Call', 'Project Update'];
 
-  const filteredPosts = mockCommunityPosts.filter((post) => {
-    const matchesTag = selectedTag === 'All' || post.tags.includes(selectedTag);
-    const matchesType = selectedType === 'All' || post.type === selectedType;
-    return matchesTag && matchesType;
-  });
+  const filteredPosts = useMemo(() => {
+    return mockCommunityPosts.filter((post) => {
+      const matchesTag = selectedTag === 'All' || post.tags.includes(selectedTag);
+      const matchesType = selectedType === 'All' || post.type === selectedType;
+      return matchesTag && matchesType;
+    });
+  }, [selectedTag, selectedType]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
