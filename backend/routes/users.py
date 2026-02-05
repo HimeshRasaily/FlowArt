@@ -28,10 +28,6 @@ async def get_users(
     db: AsyncIOMotorDatabase = Depends(get_db)
 ):
     """Get all users with optional filters"""
-    # Await the db dependency if it's a coroutine
-    if hasattr(db, '__await__'):
-        db = await db
-    
     query = {}
     
     # Filter by medium
