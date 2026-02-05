@@ -11,8 +11,8 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #0B0E14;
-    color: #F4F4F9;
+    background-color: #F9F9FB;
+    color: #121212;
 }
 
 code {
@@ -49,19 +49,21 @@ html.lenis {
   pointer-events: none;
 }
 
-/* Glassmorphism utility */
+/* Gallery Luxe Glassmorphism */
 .glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
 .glass-dark {
-    background: rgba(11, 14, 20, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(244, 244, 249, 0.1);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
 /* Custom scrollbar */
@@ -71,16 +73,16 @@ html.lenis {
 }
 
 ::-webkit-scrollbar-track {
-    background: #0B0E14;
+    background: #F9F9FB;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #6366F1;
+    background: #000000;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #7C7FF5;
+    background: #333333;
 }
 
 /* Hide scrollbar for horizontal scroll sections */
@@ -95,31 +97,67 @@ html.lenis {
 
 /* Text selection */
 ::selection {
-    background-color: #6366F1;
-    color: #F4F4F9;
+    background-color: #8A2BE2;
+    color: #FFFFFF;
+}
+
+/* Ambient gradient animation */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.ambient-gradient {
+    background: linear-gradient(
+        135deg,
+        #F9F9FB 0%,
+        #E8E8F0 25%,
+        #F5F5FA 50%,
+        #E0E0EC 75%,
+        #F9F9FB 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
+}
+
+/* Noise texture overlay */
+.noise-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.5;
 }
 
 @layer base {
   :root {
-        --background: 11 14 20;
-        --foreground: 244 244 249;
-        --card: 17 20 28;
-        --card-foreground: 244 244 249;
-        --popover: 11 14 20;
-        --popover-foreground: 244 244 249;
-        --primary: 99 102 241;
-        --primary-foreground: 244 244 249;
-        --secondary: 31 35 45;
-        --secondary-foreground: 244 244 249;
-        --muted: 31 35 45;
-        --muted-foreground: 156 163 175;
-        --accent: 99 102 241;
-        --accent-foreground: 244 244 249;
+        --background: 249 249 251;
+        --foreground: 18 18 18;
+        --card: 255 255 255;
+        --card-foreground: 18 18 18;
+        --popover: 255 255 255;
+        --popover-foreground: 18 18 18;
+        --primary: 0 0 0;
+        --primary-foreground: 255 255 255;
+        --secondary: 138 43 226;
+        --secondary-foreground: 255 255 255;
+        --muted: 240 240 245;
+        --muted-foreground: 100 100 100;
+        --accent: 138 43 226;
+        --accent-foreground: 255 255 255;
         --destructive: 239 68 68;
-        --destructive-foreground: 244 244 249;
-        --border: 31 35 45;
-        --input: 31 35 45;
-        --ring: 99 102 241;
+        --destructive-foreground: 255 255 255;
+        --border: 230 230 235;
+        --input: 230 230 235;
+        --ring: 0 0 0;
         --radius: 0.5rem;
     }
 }
